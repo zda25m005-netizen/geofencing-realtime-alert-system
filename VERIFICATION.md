@@ -12,4 +12,4 @@
 - The solution GitHub repository was published and its private visibility verified.
 - The first GitHub Actions run completed successfully; subsequent changes trigger additional checks.
 
-External publication state must be verified separately: Docker Hub login, Render account connection and video hosting are not established by a successful local test. No load test or full security audit is claimed. The application lacks authentication and tenant isolation; use demonstration data for public assessment hosting.
+Docker Hub publication is now verified separately: the public image `jhag8094/geofence-api:1.0.0` has Linux AMD64 and ARM64 manifests. Live Render service URLs and unlisted video hosting remain unverified. No load test or full security audit is claimed. The application lacks authentication and tenant isolation; use demonstration data for public assessment hosting.

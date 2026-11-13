@@ -9,11 +9,11 @@ databases:
 services:
   - type: web
     name: boundary-api-zda25m005
-    runtime: docker
+    runtime: image
     plan: free
     region: singapore
-    dockerfilePath: ./backend/Dockerfile
-    dockerContext: ./backend
+    image:
+      url: docker.io/jhag8094/geofence-api:1.0.0
     healthCheckPath: /health
     numInstances: 1
     envVars:

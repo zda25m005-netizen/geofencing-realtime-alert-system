@@ -37,12 +37,12 @@ VIDEO_GUIDE.md 35–40 minute recording outline
 | Required item | Status |
 | --- | --- |
 | Private solution GitHub repository | [zda25m005-netizen/geofencing-realtime-alert-system](https://github.com/zda25m005-netizen/geofencing-realtime-alert-system) |
-| Docker Hub backend image | Not published |
+| Docker Hub backend image | [jhag8094/geofence-api:1.0.0](https://hub.docker.com/r/jhag8094/geofence-api/tags?name=1.0.0) |
 | Deployed frontend | Not deployed |
 | Deployed backend | Not deployed |
 | 30–45 minute solution video | 36:30 AI-narrated walkthrough generated; unlisted hosting pending |
 
-The private source repository is published. Registry publication, hosted services and a hosted video still require authenticated publishing accounts. The 36:30 AI-narrated video is supplied separately from the source ZIP and as a private release asset. Its unlisted YouTube/Loom link must be added after upload. [Publication status](PUBLICATION_STATUS.md) lists each remaining step.
+The private source repository is published. The backend image is published on Docker Hub for Linux AMD64 and ARM64. Hosted services and an unlisted hosted video remain pending. The 36:30 AI-narrated video is supplied separately from the source ZIP and as a private release asset. Its unlisted YouTube/Loom link must be added after upload. [Publication status](PUBLICATION_STATUS.md) lists each remaining step.
 
 ## Design choices and limits
 
@@ -61,3 +61,9 @@ Dependencies are pinned in Go and npm lockfiles. Map tiles and fonts require int
 ## Prepared walkthrough
 
 [Download the AI-narrated video from the private release](https://github.com/zda25m005-netizen/geofencing-realtime-alert-system/releases/download/v1.0.0/boundary-ai-walkthrough.mp4). This download is not an unlisted YouTube or Loom link. [Transcript](docs/AI_WALKTHROUGH_TRANSCRIPT.md). Narration is synthetic and must not be represented as the candidate speaking personally.
+
+## Published backend image
+
+`docker pull jhag8094/geofence-api:1.0.0`
+
+[Docker Hub image](https://hub.docker.com/r/jhag8094/geofence-api). Verified multi-platform digest: `sha256:cf073f133b45e3216478db933dce77882ec30c0ffa299e207a0af04c82139c6f`.

@@ -8,6 +8,8 @@ This repository must remain private. The included GitHub Actions workflow checks
 
 ## Docker Hub
 
+Published: https://hub.docker.com/r/jhag8094/geofence-api — tag `1.0.0`, supporting Linux AMD64 and ARM64. The registry manifests were verified. The following commands are for publishing a future version.
+
 Sign in with your own Docker Hub account. Do not put credentials in files or chat.
 
 ```sh
