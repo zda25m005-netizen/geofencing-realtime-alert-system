@@ -1,0 +1,33 @@
+# Creates paid infrastructure: deploy only after approving the hosting cost.
+# Keep sync:false fields set to the actual URLs provided by Render.
+services:
+  - type: web
+    name: boundary-api-zda25m005
+    runtime: docker
+    plan: starter
+    region: singapore
+    dockerfilePath: ./backend/Dockerfile
+    dockerContext: ./backend
+    healthCheckPath: /health
+    numInstances: 1
+    disk:
+      name: boundary-data
+      mountPath: /data
+      sizeGB: 1
+    envVars:
+      - key: PORT
+        value: '8080'
+      - key: DATABASE_PATH
+        value: /data/geofence.db
+      - key: CORS_ORIGIN
+        sync: false
+  - type: web
+    name: boundary-dashboard-zda25m005
+    runtime: static
+    buildCommand: npm --prefix frontend ci && npm --prefix frontend run build
+    staticPublishPath: ./frontend/dist
+    envVars:
+      - key: NODE_VERSION
+        value: '22'
+      - key: VITE_API_URL
+        sync: false
