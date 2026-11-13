@@ -40,9 +40,9 @@ VIDEO_GUIDE.md 35–40 minute recording outline
 | Docker Hub backend image | Not published |
 | Deployed frontend | Not deployed |
 | Deployed backend | Not deployed |
-| 30–45 minute solution video | Not recorded |
+| 30–45 minute solution video | 36:30 AI-narrated walkthrough generated; unlisted hosting pending |
 
-The private source repository is published. Registry publication, hosted services and a hosted video still require authenticated publishing accounts. The AI-narrated video is supplied separately from the source ZIP when generated; its final hosted link must be added after upload.
+The private source repository is published. Registry publication, hosted services and a hosted video still require authenticated publishing accounts. The 36:30 AI-narrated video is supplied separately from the source ZIP and as a private release asset. Its unlisted YouTube/Loom link must be added after upload. [Publication status](PUBLICATION_STATUS.md) lists each remaining step.
 
 ## Design choices and limits
 
@@ -57,3 +57,7 @@ Dependencies are pinned in Go and npm lockfiles. Map tiles and fonts require int
 ## Free hosting
 
 `render.yaml` uses only free plans: a Docker API, remote PostgreSQL, and a static dashboard. Free Render PostgreSQL expires after 30 days; web services can sleep on inactivity. No paid upgrades are authorized. See [DEPLOYMENT.md](DEPLOYMENT.md).
+
+## Prepared walkthrough
+
+[Download the AI-narrated video from the private release](https://github.com/zda25m005-netizen/geofencing-realtime-alert-system/releases/download/v1.0.0/boundary-ai-walkthrough.mp4). This download is not an unlisted YouTube or Loom link. [Transcript](docs/AI_WALKTHROUGH_TRANSCRIPT.md). Narration is synthetic and must not be represented as the candidate speaking personally.

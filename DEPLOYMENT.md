@@ -35,4 +35,4 @@ A pre-existing free PostgreSQL provider can also be used by setting its `DATABAS
 
 ## Video
 
-`VIDEO_GUIDE.md` provides the required 30–45 minute outline. A genuine personal walkthrough still needs to be recorded, or an AI-narrated walkthrough must be clearly disclosed. Do not represent synthetic narration as the candidate's own explanation. Upload the final video as unlisted to an account you control, verify access and add its real URL.
+`VIDEO_GUIDE.md` provides the required 30–45 minute outline. A 36:30 AI-narrated walkthrough is generated and clearly disclosed; see the private release assets. Do not represent synthetic narration as the candidate's own explanation. Upload the final video as unlisted to an account you control, verify access and add its real URL.
