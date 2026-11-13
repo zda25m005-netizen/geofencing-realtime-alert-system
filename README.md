@@ -40,9 +40,9 @@ VIDEO_GUIDE.md 35–40 minute recording outline
 | Docker Hub backend image | [jhag8094/geofence-api:1.0.0](https://hub.docker.com/r/jhag8094/geofence-api/tags?name=1.0.0) |
 | Deployed frontend | https://boundary-dashboard-zda25m005.onrender.com |
 | Deployed backend | https://boundary-api-zda25m005.onrender.com |
-| 30–45 minute solution video | Candidate will record and upload their own walkthrough |
+| Solution video | [Uploaded personal walkthrough](https://youtu.be/6_Qn5f0ib2c) - currently 3:08; full 30–45 minute recording still required |
 
-The private source repository and Docker image are published. The backend runs on Render Free with PostgreSQL; its health endpoint has been verified. The frontend is deployed and its live database and WebSocket connection are verified. The candidate will record and upload their own walkthrough. [Publication status](PUBLICATION_STATUS.md) lists the remaining steps.
+The private source repository and Docker image are published. The backend runs on Render Free with PostgreSQL; its health endpoint has been verified. The frontend is deployed and its live database and WebSocket connection are verified. The candidate has recorded and uploaded a personal walkthrough, linked above. [Publication status](PUBLICATION_STATUS.md) lists the remaining steps.
 
 ## Design choices and limits
 
@@ -58,7 +58,11 @@ Dependencies are pinned in Go and npm lockfiles. Map tiles and fonts require int
 
 `render.yaml` uses only free plans: a Docker API, remote PostgreSQL, and a static dashboard. Free Render PostgreSQL expires after 30 days; web services can sleep on inactivity. No paid upgrades are authorized. See [DEPLOYMENT.md](DEPLOYMENT.md).
 
-## Prepared walkthrough
+## Personal solution video
+
+[Watch the assessment walkthrough](https://youtu.be/6_Qn5f0ib2c).
+
+## Optional AI reference walkthrough
 
 [Download the AI-narrated video from the private release](https://github.com/zda25m005-netizen/geofencing-realtime-alert-system/releases/download/v1.0.0/boundary-ai-walkthrough.mp4). This download is not an unlisted YouTube or Loom link. [Transcript](docs/AI_WALKTHROUGH_TRANSCRIPT.md). Narration is synthetic and must not be represented as the candidate speaking personally.
 

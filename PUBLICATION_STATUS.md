@@ -22,7 +22,7 @@
 
 ## Remaining candidate steps
 
-- Record and upload your own 30–45 minute walkthrough as unlisted YouTube/Loom, then add its real URL to README and the form.
+- Personal walkthrough uploaded: https://youtu.be/6_Qn5f0ib2c. Verified from a signed-out browser: Unlisted and accessible, but the player shows 3:08. This does not meet the required 30–45 minutes; replace it with the full recording before submission.
 - All nine required reviewer invitations were sent and verified in GitHub. Access becomes active when each reviewer accepts.
 - Submit the assessment form yourself with the verified links and refreshed source ZIP.
 
