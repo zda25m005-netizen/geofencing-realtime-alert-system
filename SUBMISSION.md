@@ -7,7 +7,7 @@ The screenshot asks for five links and a source-code ZIP under 100 MB. This pack
 | GitHub repository of solution | https://github.com/zda25m005-netizen/geofencing-realtime-alert-system (private, published) |
 | Docker Hub image link | https://hub.docker.com/r/jhag8094/geofence-api — tag `1.0.0` |
 | Deployed frontend base URL | HTTPS URL of your working React dashboard |
-| Deployed backend base URL | HTTPS root URL of your working Go API |
+| Deployed backend base URL | https://boundary-api-zda25m005.onrender.com |
 | Solution video | Shared, accessible unlisted YouTube/Loom video, 30–45 minutes |
 | Code ZIP | `geofence-system.zip`, supplied alongside this folder |
 

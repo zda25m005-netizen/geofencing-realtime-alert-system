@@ -12,17 +12,21 @@
 - Published Docker Hub image: https://hub.docker.com/r/jhag8094/geofence-api — version `1.0.0`, Linux AMD64 and ARM64. Registry metadata and both platform manifests were verified.
 - `jhag8094` accepted repository access and has write permission.
 
+- Backend deployed on Render Free: https://boundary-api-zda25m005.onrender.com — GET /health verified successfully.
+- Render PostgreSQL 18 database is Available in Singapore on the Free plan. It expires December 13, 2026.
+
 ## Not yet complete
-- Backend and frontend public deployment: Render is signed in through Chrome and creation of a free database was initiated (`boundary-db-zda25m005` in Singapore), but the service deployment and actual service URLs are not verified. Browser controls stopped responding reliably. No paid resources were selected.
-- Database availability: the Render database creation returned a resource URL, but operational status has not been verified.
-- Hosted video: YouTube Studio is signed in as the channel Zoto, but the MP4 has not been uploaded. The private GitHub release is an artifact download, not an unlisted YouTube/Loom viewing link.
+
+- Frontend deployment: waiting for action-time approval of the GitHub Render authorization screen to connect the source repository.
+- End-to-end deployed frontend and WebSocket checks remain pending.
+- Candidate will record and upload their own 30–45 minute walkthrough; generated AI video is optional reference material only.
 - Reviewer access invitations and final form submission have not been performed.
 
 ## Continue
 
-1. Finish connecting Render in Codex, or use the supplied Blueprint through the signed-in dashboard. Keep all resources free. Free Render PostgreSQL expires after 30 days.
-2. Use the published backend image `jhag8094/geofence-api:1.0.0` for deployment. Docker Hub publication is complete.
-3. Upload the generated MP4 as an unlisted video, keeping AI narration disclosed. Check channel verification if YouTube requires it for a video longer than 15 minutes.
-4. Verify actual deployed behavior in two browser tabs; then replace pending fields with the real service and video URLs.
+1. Authorize Render's GitHub connection, restricting repository access to this project where possible.
+2. Deploy the React dashboard as a free static site and configure VITE_API_URL with the verified backend URL.
+3. Verify the frontend origin matches backend CORS_ORIGIN and check live entry/exit alerts.
+4. Record and upload the candidate's video, refresh the submission ZIP, and submit verified links.
 
 Do not submit a guessed service URL or the assignment's public repository URL as the solution.
