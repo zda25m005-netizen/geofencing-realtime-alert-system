@@ -13,3 +13,13 @@
 - The first GitHub Actions run completed successfully; subsequent changes trigger additional checks.
 
 Docker Hub publication is now verified separately: the public image `jhag8094/geofence-api:1.0.0` has Linux AMD64 and ARM64 manifests. Live Render service URLs and unlisted video hosting remain unverified. No load test or full security audit is claimed. The application lacks authentication and tenant isolation; use demonstration data for public assessment hosting.
+
+## Public deployment verification — November 13, 2026
+
+- Frontend: https://boundary-dashboard-zda25m005.onrender.com — HTTP 200 and browser rendering verified.
+- Backend: https://boundary-api-zda25m005.onrender.com — `/health` returns `status: ok` and `time_ns`.
+- CORS allows the frontend HTTPS origin.
+- Created synthetic depot, vehicle and both-event rule.
+- Outside → inside → inside → outside yielded entry and exit on two simultaneous WebSocket clients, without a repeated-inside alert.
+- History was retrieved from PostgreSQL. Synthetic demonstration data remains available for the walkthrough.
+- Browser dashboard shows live connection and stored data.

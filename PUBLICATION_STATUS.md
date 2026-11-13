@@ -15,18 +15,15 @@
 - Backend deployed on Render Free: https://boundary-api-zda25m005.onrender.com — GET /health verified successfully.
 - Render PostgreSQL 18 database is Available in Singapore on the Free plan. It expires December 13, 2026.
 
-## Not yet complete
+- Frontend deployed on Render static hosting: https://boundary-dashboard-zda25m005.onrender.com
+- Deployment source: private fork https://github.com/jhag8094/geofencing-realtime-alert-system (required because the Render GitHub App is installed on jhag8094).
+- Browser verified live connection and saved fleet/geofence/rule/history data.
+- Public API CORS matches the frontend origin. Two simultaneous WebSocket clients received entry and exit alerts; a repeated inside update produced no additional alert. PostgreSQL history persisted transitions.
 
-- Frontend deployment: waiting for action-time approval of the GitHub Render authorization screen to connect the source repository.
-- End-to-end deployed frontend and WebSocket checks remain pending.
-- Candidate will record and upload their own 30–45 minute walkthrough; generated AI video is optional reference material only.
-- Reviewer access invitations and final form submission have not been performed.
+## Remaining candidate steps
 
-## Continue
+- Record and upload your own 30–45 minute walkthrough as unlisted YouTube/Loom, then add its real URL to README and the form.
+- Ensure the assignment's exact reviewers have repository access.
+- Submit the assessment form yourself with the verified links and refreshed source ZIP.
 
-1. Authorize Render's GitHub connection, restricting repository access to this project where possible.
-2. Deploy the React dashboard as a free static site and configure VITE_API_URL with the verified backend URL.
-3. Verify the frontend origin matches backend CORS_ORIGIN and check live entry/exit alerts.
-4. Record and upload the candidate's video, refresh the submission ZIP, and submit verified links.
-
-Do not submit a guessed service URL or the assignment's public repository URL as the solution.
+All hosting resources use free plans. Render PostgreSQL expires December 13, 2026. The free API can sleep when inactive and take time to wake up. The generated AI video remains optional reference material only.

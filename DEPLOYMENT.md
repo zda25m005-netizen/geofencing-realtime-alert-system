@@ -38,3 +38,11 @@ A pre-existing free PostgreSQL provider can also be used by setting its `DATABAS
 ## Video
 
 `VIDEO_GUIDE.md` provides the required 30–45 minute outline. A 36:30 AI-narrated walkthrough is generated and clearly disclosed; see the private release assets. Do not represent synthetic narration as the candidate's own explanation. Upload the final video as unlisted to an account you control, verify access and add its real URL.
+
+## Verified deployment
+
+Frontend: https://boundary-dashboard-zda25m005.onrender.com
+Backend: https://boundary-api-zda25m005.onrender.com
+Health check: https://boundary-api-zda25m005.onrender.com/health
+
+Frontend is built from the private `jhag8094/geofencing-realtime-alert-system` fork, root `frontend`, build `npm ci && npm run build`, publish `dist`, Node 22, VITE_API_URL set to the backend URL. Backend uses `jhag8094/geofence-api:1.0.0` with PORT=8080, CORS_ORIGIN set to the frontend origin, and Render's internal PostgreSQL connection stored only in the Render environment. Both resources use free plans; PostgreSQL expires December 13, 2026.

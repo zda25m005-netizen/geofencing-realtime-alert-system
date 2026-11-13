@@ -38,11 +38,11 @@ VIDEO_GUIDE.md 35–40 minute recording outline
 | --- | --- |
 | Private solution GitHub repository | [zda25m005-netizen/geofencing-realtime-alert-system](https://github.com/zda25m005-netizen/geofencing-realtime-alert-system) |
 | Docker Hub backend image | [jhag8094/geofence-api:1.0.0](https://hub.docker.com/r/jhag8094/geofence-api/tags?name=1.0.0) |
-| Deployed frontend | Not deployed |
+| Deployed frontend | https://boundary-dashboard-zda25m005.onrender.com |
 | Deployed backend | https://boundary-api-zda25m005.onrender.com |
 | 30–45 minute solution video | Candidate will record and upload their own walkthrough |
 
-The private source repository and Docker image are published. The backend runs on Render Free with PostgreSQL; its health endpoint has been verified. Frontend deployment is in progress. The candidate will record and upload their own walkthrough. [Publication status](PUBLICATION_STATUS.md) lists the remaining steps.
+The private source repository and Docker image are published. The backend runs on Render Free with PostgreSQL; its health endpoint has been verified. The frontend is deployed and its live database and WebSocket connection are verified. The candidate will record and upload their own walkthrough. [Publication status](PUBLICATION_STATUS.md) lists the remaining steps.
 
 ## Design choices and limits
 

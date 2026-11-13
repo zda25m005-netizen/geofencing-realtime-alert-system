@@ -6,7 +6,7 @@ The screenshot asks for five links and a source-code ZIP under 100 MB. This pack
 | --- | --- |
 | GitHub repository of solution | https://github.com/zda25m005-netizen/geofencing-realtime-alert-system (private, published) |
 | Docker Hub image link | https://hub.docker.com/r/jhag8094/geofence-api — tag `1.0.0` |
-| Deployed frontend base URL | HTTPS URL of your working React dashboard |
+| Deployed frontend base URL | https://boundary-dashboard-zda25m005.onrender.com |
 | Deployed backend base URL | https://boundary-api-zda25m005.onrender.com |
 | Solution video | Shared, accessible unlisted YouTube/Loom video, 30–45 minutes |
 | Code ZIP | `geofence-system.zip`, supplied alongside this folder |
@@ -17,11 +17,11 @@ The screenshot asks for five links and a source-code ZIP under 100 MB. This pack
 - [x] Push this code to your own private GitHub repository.
 - [ ] Follow the assignment brief's collaborator requirements using its exact email list.
 - [x] Publish the backend image to your Docker Hub account.
-- [ ] Deploy both services and configure HTTPS, CORS and persistent storage.
-- [ ] Verify live entry and exit alerts in two browser tabs against the deployed app.
+- [x] Deploy both services and configure HTTPS, CORS and PostgreSQL storage.
+- [x] Verify entry/exit alerts in two WebSocket clients and confirm the deployed browser dashboard loads data.
 - [ ] Record your own walkthrough using VIDEO_GUIDE.md.
 - [ ] Add your real repository, image, deployment and video links to README.md.
 - [ ] Refresh the ZIP if you change the source or README after publication.
 - [ ] Fill and submit the form yourself after verifying all links are accessible to reviewers.
 
-The private source repository is published. The backend image is published on Docker Hub. Service deployment, unlisted video upload and form submission remain pending until individually verified. Do not enter the assignment's public repository URL as your solution repository.
+The private source repository is published. The backend image is published on Docker Hub. Both services are deployed and verified. Your personal video upload and form submission remain pending. Do not enter the assignment's public repository URL as your solution repository.
