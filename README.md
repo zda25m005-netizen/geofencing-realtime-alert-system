@@ -1,6 +1,6 @@
 # Boundary — Geofencing & Real-time Alert System
 
-A Go API and React fleet dashboard with interactive Leaflet maps, persistent SQLite storage, and WebSocket entry/exit alerts. This is an original implementation created with AI assistance; review and understand the code before presenting it.
+A Go API and React fleet dashboard with interactive Leaflet maps, SQLite/PostgreSQL storage, and WebSocket entry/exit alerts. This is an original implementation created with AI assistance; review and understand the code before presenting it.
 
 ## Run
 
@@ -36,20 +36,24 @@ VIDEO_GUIDE.md 35–40 minute recording outline
 
 | Required item | Status |
 | --- | --- |
-| Private solution GitHub repository | Not published |
+| Private solution GitHub repository | [zda25m005-netizen/geofencing-realtime-alert-system](https://github.com/zda25m005-netizen/geofencing-realtime-alert-system) |
 | Docker Hub backend image | Not published |
 | Deployed frontend | Not deployed |
 | Deployed backend | Not deployed |
 | 30–45 minute solution video | Not recorded |
 
-No published links or completed submission are claimed. The ZIP contains source code and instructions; external publication and the personal walkthrough remain separate steps.
+The private source repository is published. Registry publication, hosted services and a hosted video still require authenticated publishing accounts. The AI-narrated video is supplied separately from the source ZIP when generated; its final hosted link must be added after upload.
 
 ## Design choices and limits
 
-SQLite provides a real embedded database without a separate service; Docker uses a named persistent volume. One process serializes requests so location comparisons and transactions cannot race. WebSocket clients have bounded queues, write deadlines and heartbeat checks; slow clients disconnect and can reconnect. History remains available after reconnect, but the transient live feed is not replayed automatically.
+SQLite provides an embedded database for local use; Docker uses a named persistent volume. Set `DATABASE_URL` to a PostgreSQL URL for remote persistence on free hosting. `backend/database.go` adapts the repository-owned parameterized SQL for both stores. PostgreSQL does not yet use PostGIS. One process serializes requests so location comparisons and transactions cannot race. WebSocket clients have bounded queues, write deadlines and heartbeat checks; slow clients disconnect and can reconnect. History remains available after reconnect, but the transient live feed is not replayed automatically.
 
 This is a small-scale assessment implementation, not a production fleet platform. Polygon containment scans all fences; history filtering scans stored events; there is no spatial index. Polygons are planar and intended for local areas, not antimeridian/polar regions. There is no authentication, tenant isolation, rate limiting, rule editing/deletion, or horizontal WebSocket distribution. CORS restricts browser origins, not API access. Add authentication before storing real fleet data or exposing it to untrusted users.
 
 For scale: use PostGIS with a GiST spatial index, per-vehicle transaction locks, SQL-side indexed history filters and keyset pagination, an outbox and broker for reliable cross-process alert delivery, authentication, observability, backups and a tile provider appropriate for your traffic.
 
 Dependencies are pinned in Go and npm lockfiles. Map tiles and fonts require internet access. OSM attribution remains visible.
+
+## Free hosting
+
+`render.yaml` uses only free plans: a Docker API, remote PostgreSQL, and a static dashboard. Free Render PostgreSQL expires after 30 days; web services can sleep on inactivity. No paid upgrades are authorized. See [DEPLOYMENT.md](DEPLOYMENT.md).

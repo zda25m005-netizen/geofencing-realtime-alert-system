@@ -4,7 +4,7 @@ The screenshot asks for five links and a source-code ZIP under 100 MB. This pack
 
 | Form field | What to provide |
 | --- | --- |
-| GitHub repository of solution | URL of your own private repository containing backend and frontend |
+| GitHub repository of solution | https://github.com/zda25m005-netizen/geofencing-realtime-alert-system (private, published) |
 | Docker Hub image link | Your published backend image page and version tag |
 | Deployed frontend base URL | HTTPS URL of your working React dashboard |
 | Deployed backend base URL | HTTPS root URL of your working Go API |
@@ -14,7 +14,7 @@ The screenshot asks for five links and a source-code ZIP under 100 MB. This pack
 ## Before submitting
 
 - [ ] Read and understand the implementation, tests, assumptions and limitations.
-- [ ] Push this code to your own private GitHub repository.
+- [x] Push this code to your own private GitHub repository.
 - [ ] Follow the assignment brief's collaborator requirements using its exact email list.
 - [ ] Publish the backend image to your Docker Hub account.
 - [ ] Deploy both services and configure HTTPS, CORS and persistent storage.
@@ -24,4 +24,4 @@ The screenshot asks for five links and a source-code ZIP under 100 MB. This pack
 - [ ] Refresh the ZIP if you change the source or README after publication.
 - [ ] Fill and submit the form yourself after verifying all links are accessible to reviewers.
 
-No repository, image, deployment, video upload or form submission has been completed by this local build. Do not enter the assignment's public repository URL as your solution repository.
+The private source repository is published. Image publication, service deployment, video upload and form submission remain pending until individually verified. Do not enter the assignment's public repository URL as your solution repository.

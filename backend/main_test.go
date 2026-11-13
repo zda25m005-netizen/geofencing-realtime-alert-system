@@ -2,10 +2,13 @@ package main
 
 import (
 	"bytes"
+	"database/sql"
 	"encoding/json"
 	"github.com/gorilla/websocket"
 	"net/http"
 	"net/http/httptest"
+	"net/url"
+	"os"
 	"path/filepath"
 	"strings"
 	"testing"
@@ -28,8 +31,32 @@ func TestPolygon(t *testing.T) {
 		}
 	}
 }
-func TestSystem(t *testing.T) {
-	path := filepath.Join(t.TempDir(), "test.db")
+func TestSystem(t *testing.T) { testSystem(t, filepath.Join(t.TempDir(), "test.db")) }
+func TestPostgresSystem(t *testing.T) {
+	source := os.Getenv("TEST_DATABASE_URL")
+	if source == "" {
+		t.Skip("set TEST_DATABASE_URL to run PostgreSQL integration tests")
+	}
+	admin, e := sql.Open("pgx", source)
+	if e != nil {
+		t.Fatal(e)
+	}
+	defer admin.Close()
+	schema := id("test") // Generated hex and underscore only: safe SQL identifier.
+	if _, e = admin.Exec("CREATE SCHEMA " + schema); e != nil {
+		t.Fatal(e)
+	}
+	defer admin.Exec("DROP SCHEMA " + schema + " CASCADE")
+	parsed, e := url.Parse(source)
+	if e != nil {
+		t.Fatal(e)
+	}
+	q := parsed.Query()
+	q.Set("search_path", schema)
+	parsed.RawQuery = q.Encode()
+	testSystem(t, parsed.String())
+}
+func testSystem(t *testing.T, path string) {
 	a, e := newApp(path)
 	if e != nil {
 		t.Fatal(e)

@@ -9,11 +9,11 @@
     "preview": "vite preview --host 0.0.0.0"
   },
   "dependencies": {
+    "leaflet": "1.9.4",
     "react": "19.1.1",
-    "react-dom": "19.1.1",
-    "leaflet": "1.9.4"
+    "react-dom": "19.1.1"
   },
   "devDependencies": {
-    "vite": "7.1.7"
+    "vite": "7.3.8"
   }
 }

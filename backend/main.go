@@ -10,7 +10,6 @@ import (
 	"io"
 	"log"
 	"math"
-	_ "modernc.org/sqlite"
 	"net/http"
 	"os"
 	"path/filepath"
@@ -22,7 +21,7 @@ import (
 
 type object = map[string]any
 type App struct {
-	db        *sql.DB
+	db        *database
 	mu        sync.Mutex
 	clients   map[chan []byte]bool
 	clientsMu sync.Mutex
@@ -77,26 +76,13 @@ func env(k, d string) string {
 	return d
 }
 func newApp(path string) (*App, error) {
-	db, e := sql.Open("sqlite", path)
+	db, e := openDatabase(path)
 	if e != nil {
-		return nil, e
-	}
-	db.SetMaxOpenConns(1)
-	_, e = db.Exec(`PRAGMA journal_mode=WAL; PRAGMA foreign_keys=ON; PRAGMA busy_timeout=5000;
- CREATE TABLE IF NOT EXISTS fences(id TEXT PRIMARY KEY, data TEXT NOT NULL);
- CREATE TABLE IF NOT EXISTS vehicles(id TEXT PRIMARY KEY, number TEXT UNIQUE NOT NULL, data TEXT NOT NULL);
- CREATE TABLE IF NOT EXISTS locations(id INTEGER PRIMARY KEY, vehicle TEXT NOT NULL REFERENCES vehicles(id), lat REAL, lng REAL, timestamp TEXT);
- CREATE INDEX IF NOT EXISTS location_vehicle ON locations(vehicle,id DESC);
- CREATE TABLE IF NOT EXISTS rules(id TEXT PRIMARY KEY, fence TEXT REFERENCES fences(id), vehicle TEXT, event TEXT, data TEXT NOT NULL);
- CREATE TABLE IF NOT EXISTS events(id TEXT PRIMARY KEY, vehicle TEXT, fence TEXT, timestamp TEXT, data TEXT NOT NULL, alert TEXT);
- CREATE INDEX IF NOT EXISTS event_filter ON events(vehicle,fence,timestamp DESC);
- CREATE INDEX IF NOT EXISTS event_date ON events(timestamp DESC);`)
-	if e != nil {
-		db.Close()
 		return nil, e
 	}
 	return &App{db: db, clients: map[chan []byte]bool{}, origin: env("CORS_ORIGIN", "http://localhost:5173")}, nil
 }
+
 func encode(v any) string { b, _ := json.Marshal(v); return string(b) }
 func reply(w http.ResponseWriter, start time.Time, status int, v object) {
 	v["time_ns"] = strconv.FormatInt(time.Since(start).Nanoseconds(), 10)
@@ -349,7 +335,7 @@ func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		}
 		f.ID = id("geo")
 		f.Created = now()
-		if _, e := a.db.Exec("INSERT INTO fences VALUES(?,?)", f.ID, encode(f)); e != nil {
+		if _, e := a.db.Exec("INSERT INTO fences(id,data) VALUES(?,?)", f.ID, encode(f)); e != nil {
 			internal(e)
 			return
 		}
@@ -380,9 +366,9 @@ func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		v.ID = id("veh")
 		v.Created = now()
 		v.Status = "active"
-		_, e := a.db.Exec("INSERT INTO vehicles VALUES(?,?,?)", v.ID, v.Number, encode(v))
+		_, e := a.db.Exec("INSERT INTO vehicles(id,number,data) VALUES(?,?,?)", v.ID, v.Number, encode(v))
 		if e != nil {
-			if strings.Contains(e.Error(), "UNIQUE") {
+			if strings.Contains(e.Error(), "UNIQUE") || strings.Contains(e.Error(), "23505") {
 				fail(409, "vehicle_number already registered")
 			} else {
 				internal(e)
@@ -480,7 +466,7 @@ func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 				alert = encode(msg)
 				messages = append(messages, []byte(alert))
 			}
-			if _, e = tx.Exec("INSERT INTO events VALUES(?,?,?,?,?,?)", eid, v.ID, f.ID, l.Timestamp, encode(history), alert); e != nil {
+			if _, e = tx.Exec("INSERT INTO events(id,vehicle,fence,timestamp,data,alert) VALUES(?,?,?,?,?,?)", eid, v.ID, f.ID, l.Timestamp, encode(history), alert); e != nil {
 				internal(e)
 				return
 			}
@@ -555,7 +541,7 @@ func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 		rule.ID = id("alert")
 		rule.Status = "active"
 		rule.Created = now()
-		if _, e = a.db.Exec("INSERT INTO rules VALUES(?,?,?,?,?)", rule.ID, rule.Fence, rule.Vehicle, rule.Event, encode(rule)); e != nil {
+		if _, e = a.db.Exec("INSERT INTO rules(id,fence,vehicle,event,data) VALUES(?,?,?,?,?)", rule.ID, rule.Fence, rule.Vehicle, rule.Event, encode(rule)); e != nil {
 			internal(e)
 			return
 		}
@@ -651,9 +637,11 @@ func (a *App) ServeHTTP(w http.ResponseWriter, r *http.Request) {
 	}
 }
 func main() {
-	path := env("DATABASE_PATH", "./data/geofence.db")
-	if e := os.MkdirAll(filepath.Dir(path), 0755); e != nil {
-		log.Fatal(e)
+	path := env("DATABASE_URL", env("DATABASE_PATH", "./data/geofence.db"))
+	if !isPostgres(path) {
+		if e := os.MkdirAll(filepath.Dir(path), 0755); e != nil {
+			log.Fatal(e)
+		}
 	}
 	a, e := newApp(path)
 	if e != nil {

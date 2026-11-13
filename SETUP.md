@@ -33,7 +33,7 @@ npm ci
 npm run dev
 ```
 
-Backend configuration: `PORT` (8080), `DATABASE_PATH` (`./data/geofence.db`), `CORS_ORIGIN` (`http://localhost:5173`, exact origin with no trailing slash). Set these in the process environment. The native backend does not automatically load `.env`.
+Backend configuration: `DATABASE_URL` (optional PostgreSQL URL, overrides SQLite), `PORT` (8080), `DATABASE_PATH` (`./data/geofence.db`), `CORS_ORIGIN` (`http://localhost:5173`, exact origin with no trailing slash). Set these in the process environment. The native backend does not automatically load `.env`.
 
 Frontend configuration: create `frontend/.env.local` containing `VITE_API_URL=http://localhost:8080`. This URL must be accessible from the user's browser, not a Docker internal hostname. Restart Vite after changing it. Production values are embedded at build time.
 
@@ -133,3 +133,9 @@ SQLite tables are created on boot: fences, vehicles (unique number), locations (
 - No alerts: verify an active matching rule exists, coordinates actually cross the fence, and timestamp increases. Merely remaining inside is not another entry.
 - Missing map tiles/fonts: check internet access. API and coordinate forms do not depend on map tile availability.
 - Deployment restart loses data: mount a persistent disk at the configured database path.
+
+## PostgreSQL and free Render hosting
+
+Set `DATABASE_URL` to a PostgreSQL connection URL to select the remote database adapter. When omitted, SQLite remains the local default. The included `render.yaml` provisions free-only API, PostgreSQL and static frontend resources. Render free PostgreSQL expires after 30 days; free web services may sleep. Check the limitations in DEPLOYMENT.md before using it for longer-term hosting.
+
+To run the same integration suite against your own disposable PostgreSQL test database, set `TEST_DATABASE_URL` before `go test -race ./...`. Each test run creates and removes an isolated generated schema. Do not grant the test process access to production data.

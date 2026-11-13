@@ -19,17 +19,19 @@ The script builds both Linux AMD64 and ARM64 variants and pushes the versioned b
 
 ## Render
 
-The supplied `render.yaml` describes a Docker backend with a persistent disk and a static React frontend. It is prepared configuration, not evidence of deployment. **The backend uses a paid Starter service plus a 1 GB disk. Do not launch it without approving the current cost in your account.** Persistent disks are unavailable on free Render web services: https://render.com/docs/disks
+The supplied `render.yaml` uses only free plans: a Docker API, a separate PostgreSQL database and a static frontend. No paid services or disks are configured. The database URL is injected by Render; no database credential is committed.
 
 1. Connect your Render account and grant it access only to this private solution repository.
-2. Create a Blueprint from the repository after approving the service and disk cost.
+2. Create a Blueprint from the repository, choosing the free resources in `render.yaml`.
 3. Set the backend's `CORS_ORIGIN` to the exact frontend HTTPS origin, without trailing slash.
-4. Set the frontend's `VITE_API_URL` to the actual backend HTTPS base URL. Rebuild the frontend after changing it.
+4. Set the frontend's `VITE_API_URL` to the actual backend HTTPS base URL. Rebuild after changing it.
 5. Confirm `/health` responds and use two browser tabs to verify entry and exit delivery.
-6. Restart the backend and verify history persists on its mounted disk.
+6. Restart the backend and verify history persists in PostgreSQL.
 7. Put the verified URLs in README.md and SUBMISSION.md. Do not use estimated service URLs.
 
-The static frontend may be hosted elsewhere if desired; ensure its API URL and the backend CORS setting agree. For free-only hosting, choose a provider with durable storage or change the database implementation; an ephemeral SQLite deployment is not a durable solution.
+Free Render PostgreSQL expires 30 days after creation, and free web services sleep after inactivity. This is time-limited assessment hosting, not permanent production hosting. Do not upgrade to a paid plan automatically. Official limitations: https://render.com/docs/free
+
+A pre-existing free PostgreSQL provider can also be used by setting its `DATABASE_URL`. Never deploy SQLite to an ephemeral filesystem and claim its data survives restarts.
 
 ## Video
 

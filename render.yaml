@@ -1,24 +1,28 @@
-# Creates paid infrastructure: deploy only after approving the hosting cost.
-# Keep sync:false fields set to the actual URLs provided by Render.
+# FREE-ONLY assessment deployment. Free Render Postgres expires after 30 days.
+# Do not attach a paid disk or upgrade service plans automatically.
+databases:
+  - name: boundary-db-zda25m005
+    plan: free
+    region: singapore
+    databaseName: boundary
+    user: boundary
 services:
   - type: web
     name: boundary-api-zda25m005
     runtime: docker
-    plan: starter
+    plan: free
     region: singapore
     dockerfilePath: ./backend/Dockerfile
     dockerContext: ./backend
     healthCheckPath: /health
     numInstances: 1
-    disk:
-      name: boundary-data
-      mountPath: /data
-      sizeGB: 1
     envVars:
       - key: PORT
         value: '8080'
-      - key: DATABASE_PATH
-        value: /data/geofence.db
+      - key: DATABASE_URL
+        fromDatabase:
+          name: boundary-db-zda25m005
+          property: connectionString
       - key: CORS_ORIGIN
         sync: false
   - type: web
