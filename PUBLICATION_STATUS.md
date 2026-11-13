@@ -23,7 +23,7 @@
 ## Remaining candidate steps
 
 - Record and upload your own 30–45 minute walkthrough as unlisted YouTube/Loom, then add its real URL to README and the form.
-- Ensure the assignment's exact reviewers have repository access.
+- All nine required reviewer invitations were sent and verified in GitHub. Access becomes active when each reviewer accepts.
 - Submit the assessment form yourself with the verified links and refreshed source ZIP.
 
 All hosting resources use free plans. Render PostgreSQL expires December 13, 2026. The free API can sleep when inactive and take time to wake up. The generated AI video remains optional reference material only.

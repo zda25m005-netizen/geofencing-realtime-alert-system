@@ -15,7 +15,7 @@ The screenshot asks for five links and a source-code ZIP under 100 MB. This pack
 
 - [ ] Read and understand the implementation, tests, assumptions and limitations.
 - [x] Push this code to your own private GitHub repository.
-- [ ] Follow the assignment brief's collaborator requirements using its exact email list.
+- [x] Send invitations to all nine required collaborator emails; pending reviewer acceptance.
 - [x] Publish the backend image to your Docker Hub account.
 - [x] Deploy both services and configure HTTPS, CORS and PostgreSQL storage.
 - [x] Verify entry/exit alerts in two WebSocket clients and confirm the deployed browser dashboard loads data.
